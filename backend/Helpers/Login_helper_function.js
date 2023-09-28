@@ -1,7 +1,7 @@
 import { usersCollection } from "../database/Schema/UsersSchema.js"
 import jwt from "jsonwebtoken"
 import  bcryptjs from 'bcryptjs'
-import { generateToken } from "./Tokens.js"
+import { generateToken } from "./TokensGenerator.js"
 export const Login_helper_function=async(req,res)=>{
 
    try {
@@ -29,7 +29,7 @@ const is_password_valid=await bcryptjs.compare(password,password_from_db,(err,re
 
  const sign_Key=process.env.SIGN_KEY
  const refresh_key=process.env.REFRESH_KEY
- const expiryHrs='10h'
+ const expiryHrs='100s'
  const expiryRefresh="365d"
  const token = await  generateToken(email,sign_Key,expiryHrs)
 
@@ -43,6 +43,7 @@ const refreshToken= await generateToken(email,refresh_key,expiryRefresh)
 const response={
     token:token,
     refreshToken:refreshToken,
+    userId:user_exist?._id
 }
 
 

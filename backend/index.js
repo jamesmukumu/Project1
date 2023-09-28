@@ -4,6 +4,9 @@ import cors from "cors"
 import bodyParser from "body-parser"
 import { connect_to_dataBase } from "./database/connect.js";
 import { User_Login_Route } from "./Routes/LoginRoute.js";
+import { Api_key_route } from "./Routes/Api_keyRoute.js";
+import { Login_With_github } from "./Routes/LoginWithGithub.js";
+import { get_user_data_route } from "./Routes/Get_gitHub_userData_route.js";
 
 // !CONFIGURE ALL THE FILES
 const app= express();
@@ -27,3 +30,9 @@ console.log("database was connected")
 })
 // !WE USE THE ROUTES HERE FOR BOTH REGISTRATION AND LOGIN
 app.use(User_Login_Route)
+// !generate api key route
+app.use(Api_key_route)
+// !login with github
+app.use(Login_With_github)
+app.use(get_user_data_route)
+
