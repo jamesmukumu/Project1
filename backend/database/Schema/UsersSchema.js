@@ -8,6 +8,10 @@ const usersSchema=new Schema({
     },
     password:String,
     secret_key:String,
+    avatar_url:String,
+    git_hub_id:String
+
+    
 },{
     collection:"users"
 })
